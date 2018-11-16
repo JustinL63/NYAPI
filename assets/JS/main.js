@@ -8,4 +8,21 @@ $.ajax({
     method: "GET"
 }).then(function(response) {
     console.log(response)
+    for(i = 0; i < response.response.docs.length; i++) {
+        var articleDiv = $("<div>")
+        var p = $("<p>")
+        var articleAuthor = $("<p>")
+        var articleDate = $("<p>")
+        var articleLink = $("<a>")
+        if(response.response.docs[i].byline) {
+            articleAuthor.text(response.response.docs[i].byline.original)
+        }
+        articleDate.text(response.response.docs[i].pub_date)
+        p.text(response.response.docs[i].headline.main);
+        articleDiv.append(p)
+        articleDiv.append(articleAuthor)
+        articleAuthor.append(articleDate)
+        $("#articlePlace").append(articleDiv)
+    }
+    
 })
