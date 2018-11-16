@@ -14,14 +14,17 @@ $.ajax({
         var articleAuthor = $("<p>")
         var articleDate = $("<p>")
         var articleLink = $("<a>")
+        articleLink.attr("href", response.response.docs[i].web_url)
         if(response.response.docs[i].byline) {
             articleAuthor.text(response.response.docs[i].byline.original)
         }
+        articleLink.text(response.response.docs[i].web_url)
         articleDate.text(response.response.docs[i].pub_date)
         p.text(response.response.docs[i].headline.main);
         articleDiv.append(p)
         articleDiv.append(articleAuthor)
-        articleAuthor.append(articleDate)
+        articleDiv.append(articleDate)
+        articleDiv.append(articleLink)
         $("#articlePlace").append(articleDiv)
     }
     
